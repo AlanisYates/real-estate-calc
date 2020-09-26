@@ -40,9 +40,9 @@ export default [
     ),
   }),
 
-  // Yup.object().shape({
-  //   [downPay.name]: Yup.string().required(`${downPay.requiredErrorMsg}`),
-  //   [closing.name]: Yup.string().required(`${closing.requiredErrorMsg}`),
-  //   [rehab.name]: Yup.string().required(`${rehab.requiredErrorMsg}`),
-  // }),
+  Yup.object().shape({
+    [downPay.name]: Yup.string().required(`${downPay.requiredErrorMsg}`),
+    [closing.name]: Yup.string().required(`${closing.requiredErrorMsg}`),
+    [rehab.name]: Yup.string().required(`${rehab.requiredErrorMsg}`),
+  }),
 ];

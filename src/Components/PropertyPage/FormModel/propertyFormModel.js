@@ -66,5 +66,20 @@ export default {
       label: "Rental Income*",
       requiredErrorMsg: "Rental Income is required",
     },
+    downPay: {
+      name: "downPay",
+      label: "Down Payment*",
+      requiredErrorMsg: "Down Payment is required",
+    },
+    closing: {
+      name: "closing",
+      label: "Closing Costs*",
+      requiredErrorMsg: "Closing Cost is required",
+    },
+    rehab: {
+      name: "rehab",
+      label: "Rehab Costs*",
+      requiredErrorMsg: "rehab Cost is required",
+    },
   },
 };
