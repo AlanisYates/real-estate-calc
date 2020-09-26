@@ -27,46 +27,46 @@ export default function InputForm(props) {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <InputField name={nickName.name} label={nickName.label} fullwidth />
+          <InputField name={nickName.name} label={nickName.label} fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <InputField name={address.name} label={address.label} fullwidth />
+          <InputField name={address.name} label={address.label} fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <InputField name={link.name} label={link.label} fullwidth />
+          <InputField name={link.name} label={link.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={price.name} label={price.label} fullwidth />
+          <InputField name={price.name} label={price.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={mortgage.name} label={mortgage.label} fullwidth />
+          <InputField name={mortgage.name} label={mortgage.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={lawn.name} label={lawn.label} fullwidth />
+          <InputField name={lawn.name} label={lawn.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={vacancy.name} label={vacancy.label} fullwidth />
+          <InputField name={vacancy.name} label={vacancy.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={capX.name} label={capX.label} fullwidth />
+          <InputField name={capX.name} label={capX.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={repairs.name} label={repairs.label} fullwidth />
+          <InputField name={repairs.name} label={repairs.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={insurance.name} label={insurance.label} fullwidth />
+          <InputField name={insurance.name} label={insurance.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={tax.name} label={tax.label} fullwidth />
+          <InputField name={tax.name} label={tax.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={hoa.name} label={hoa.label} fullwidth />
+          <InputField name={hoa.name} label={hoa.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
           <InputField
             name={rentalIncome.name}
             label={rentalIncome.label}
-            fullwidth
+            fullWidth
           />
         </Grid>
       </Grid>
