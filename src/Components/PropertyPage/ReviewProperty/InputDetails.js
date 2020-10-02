@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography, Grid } from "@material-ui/core";
+import { numberWithCommas } from "../../utils/format";
 import useStyles from "./styles";
 
 export default function InputDetails(props) {
@@ -47,7 +48,7 @@ export default function InputDetails(props) {
             <Typography gutterBottom>Mortgage</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography gutterBottom>{mortgage}</Typography>
+            <Typography gutterBottom>{numberWithCommas(mortgage)}</Typography>
           </Grid>
         </>
         <>

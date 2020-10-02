@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
-import { InputField } from "../../FormFields";
+import { InputNumber } from "../../FormFields";
 
 export default function ReturnForm(props) {
   const {
@@ -13,13 +13,13 @@ export default function ReturnForm(props) {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <InputField name={downPay.name} label={downPay.label} fullwidth />
+          <InputNumber name={downPay.name} label={downPay.label} fullwidth />
         </Grid>
         <Grid item xs={12}>
-          <InputField name={closing.name} label={closing.label} fullwidth />
+          <InputNumber name={closing.name} label={closing.label} fullwidth />
         </Grid>
         <Grid item xs={12}>
-          <InputField name={rehab.name} label={rehab.label} fullwidth />
+          <InputNumber name={rehab.name} label={rehab.label} fullwidth />
         </Grid>
       </Grid>
     </>

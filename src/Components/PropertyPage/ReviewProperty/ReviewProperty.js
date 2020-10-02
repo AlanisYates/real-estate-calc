@@ -1,9 +1,9 @@
 import React from "react";
 import { useFormikContext } from "formik";
 import { Typography, Grid } from "@material-ui/core";
-// import PropertyCalc from "./PropertyCalc";
 import InputDetails from "./InputDetails";
 import ReturnDetails from "./ReturnDetails";
+import PropertyCalculations from "./PropertyCalculations";
 
 export default function ReviewProperty() {
   const { values: formValues } = useFormikContext();
@@ -12,7 +12,7 @@ export default function ReviewProperty() {
       <Typography variant="h6" gutterBottom>
         Property Summary
       </Typography>
-      {/* <PropertyCalc /> */}
+      <PropertyCalculations formValues={formValues} />
       <Grid container spacing={2}>
         <InputDetails formValues={formValues} />
         <ReturnDetails formValues={formValues} />

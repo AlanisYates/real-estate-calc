@@ -26,23 +26,23 @@ export default [
     [nickName.name]: Yup.string().required(`${nickName.requiredErrorMsg}`),
     [address.name]: Yup.string().required(`${address.requiredErrorMsg}`),
     [link.name]: Yup.string().required(`${link.requiredErrorMsg}`),
-    [price.name]: Yup.string().required(`${price.requiredErrorMsg}`),
-    [mortgage.name]: Yup.string().required(`${mortgage.requiredErrorMsg}`),
-    [lawn.name]: Yup.string().required(`${lawn.requiredErrorMsg}`),
-    [vacancy.name]: Yup.string().required(`${vacancy.requiredErrorMsg}`),
-    [capX.name]: Yup.string().required(`${capX.requiredErrorMsg}`),
-    [repairs.name]: Yup.string().required(`${repairs.requiredErrorMsg}`),
-    [insurance.name]: Yup.string().required(`${insurance.requiredErrorMsg}`),
-    [tax.name]: Yup.string().required(`${tax.requiredErrorMsg}`),
-    [hoa.name]: Yup.string().required(`${hoa.requiredErrorMsg}`),
-    [rentalIncome.name]: Yup.string().required(
+    [price.name]: Yup.number().required(`${price.requiredErrorMsg}`),
+    [mortgage.name]: Yup.number().required(`${mortgage.requiredErrorMsg}`),
+    [lawn.name]: Yup.number().required(`${lawn.requiredErrorMsg}`),
+    [vacancy.name]: Yup.number().required(`${vacancy.requiredErrorMsg}`),
+    [capX.name]: Yup.number().required(`${capX.requiredErrorMsg}`),
+    [repairs.name]: Yup.number().required(`${repairs.requiredErrorMsg}`),
+    [insurance.name]: Yup.number().required(`${insurance.requiredErrorMsg}`),
+    [tax.name]: Yup.number().required(`${tax.requiredErrorMsg}`),
+    [hoa.name]: Yup.number().required(`${hoa.requiredErrorMsg}`),
+    [rentalIncome.name]: Yup.number().required(
       `${rentalIncome.requiredErrorMsg}`
     ),
   }),
 
   Yup.object().shape({
-    [downPay.name]: Yup.string().required(`${downPay.requiredErrorMsg}`),
-    [closing.name]: Yup.string().required(`${closing.requiredErrorMsg}`),
-    [rehab.name]: Yup.string().required(`${rehab.requiredErrorMsg}`),
+    [downPay.name]: Yup.number().required(`${downPay.requiredErrorMsg}`),
+    [closing.name]: Yup.number().required(`${closing.requiredErrorMsg}`),
+    [rehab.name]: Yup.number().required(`${rehab.requiredErrorMsg}`),
   }),
 ];

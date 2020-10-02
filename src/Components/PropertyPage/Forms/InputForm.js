@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
-import { InputField } from "../../FormFields";
+import { InputField, InputNumber } from "../../FormFields";
 
 export default function InputForm(props) {
   const {
@@ -36,34 +36,38 @@ export default function InputForm(props) {
           <InputField name={link.name} label={link.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={price.name} label={price.label} fullWidth />
+          <InputNumber name={price.name} label={price.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={mortgage.name} label={mortgage.label} fullWidth />
+          <InputNumber name={mortgage.name} label={mortgage.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={lawn.name} label={lawn.label} fullWidth />
+          <InputNumber name={lawn.name} label={lawn.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={vacancy.name} label={vacancy.label} fullWidth />
+          <InputNumber name={vacancy.name} label={vacancy.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={capX.name} label={capX.label} fullWidth />
+          <InputNumber name={capX.name} label={capX.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={repairs.name} label={repairs.label} fullWidth />
+          <InputNumber name={repairs.name} label={repairs.label} on fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={insurance.name} label={insurance.label} fullWidth />
+          <InputNumber
+            name={insurance.name}
+            label={insurance.label}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={tax.name} label={tax.label} fullWidth />
+          <InputNumber name={tax.name} label={tax.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField name={hoa.name} label={hoa.label} fullWidth />
+          <InputNumber name={hoa.name} label={hoa.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <InputField
+          <InputNumber
             name={rentalIncome.name}
             label={rentalIncome.label}
             fullWidth

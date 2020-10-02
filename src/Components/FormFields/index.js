@@ -1,2 +1,3 @@
 import InputField from "./InputField";
-export { InputField };
+import InputNumber from "./InputNumber";
+export { InputField, InputNumber };
