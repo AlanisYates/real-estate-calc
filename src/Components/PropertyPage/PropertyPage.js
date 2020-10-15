@@ -8,6 +8,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { Formik, Form } from "formik";
+import axios from "axios";
 
 import InputForm from "./Forms/InputForm";
 import ReturnForm from "./Forms/ReturnForm";
@@ -16,7 +17,7 @@ import PropertySuccess from "./PropertySuccess";
 
 import validationSchema from "./FormModel/validationSchema";
 import propertyFormModel from "./FormModel/propertyFormModel";
-import formInitalValues from "./FormModel/formInitalValues";
+// import formInitalValues from "./FormModel/formInitalValues";
 
 import useStyles from "./styles";
 
@@ -36,19 +37,42 @@ function _renderStepContent(step) {
   }
 }
 
-export default function PropertyPage() {
+export default function PropertyPage(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
+  const initalVals = {
+    repairs: "100",
+    vacancy: "95",
+    mortgage: "62",
+    rehab: "5000",
+    address: "11922 Your address, Tamp, florida, 22345",
+    hoa: "0",
+    rentalIncome: "1900",
+    nickName: "Property 23",
+    tax: "170",
+    lawn: "0",
+    insurance: "67",
+    price: "224000",
+    closing: "1200",
+    link: "https://material-ui.com/components/typography/",
+    capX: "100",
+    downPay: "1000004",
+  };
 
-  function _sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+  async function getPropertyInfo(id) {
+    const res = await axios.get(
+      `https://us-central1-real-estate-backend-8b77f.cloudfunctions.net/app/properties/${id}`
+    );
+    return res.data;
   }
 
   async function _submitForm(values, actions) {
-    await _sleep(1000);
-    alert(JSON.stringify(values, null, 2));
+    await axios.post(
+      "https://us-central1-real-estate-backend-8b77f.cloudfunctions.net/app/properties",
+      values
+    );
     actions.setSubmitting(false);
 
     setActiveStep(activeStep + 1);
@@ -85,7 +109,8 @@ export default function PropertyPage() {
           <PropertySuccess />
         ) : (
           <Formik
-            initialValues={formInitalValues}
+            enableReinitialize={true}
+            initialValues={initalVals}
             validationSchema={currentValidationSchema}
             onSubmit={_handleSubmit}
           >

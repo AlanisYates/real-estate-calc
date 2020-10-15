@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormikContext } from "formik";
-import { Typography, Grid, Divider } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import InputDetails from "./InputDetails";
 import ReturnDetails from "./ReturnDetails";
 import PropertyCalculations from "./PropertyCalculations";
