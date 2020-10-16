@@ -42,7 +42,7 @@ export default function PropertyCalculations(props) {
   const yearlyCash = Math.round(
     (Number(rentalIncome) - Number(totalExpense)) * 12
   );
-  const cashFlow = Number(rentalIncome) - Number(totalExpense);
+  const cashFlow = Math.round(Number(rentalIncome) - Number(totalExpense));
 
   const roi = Number(yearlyCash) / Number(totalDown);
   const returnPercent = Math.round((roi + Number.EPSILON) * 100);

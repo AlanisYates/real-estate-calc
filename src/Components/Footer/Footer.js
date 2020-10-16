@@ -4,10 +4,11 @@ import { Link, Typography } from "@material-ui/core/";
 export default function Footer() {
   return (
     <Typography variant="body2" color="secondary" align="center">
-      Copyright ©
+      Copyright © {}
       <Link color="inherit" href="https://material-ui.com/">
-        The Website yooo
+        Alanis Yates
       </Link>
+      <span> </span>
       {new Date().getFullYear()}
     </Typography>
   );

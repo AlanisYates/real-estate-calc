@@ -6,6 +6,7 @@ import {
   Button,
   Typography,
   CircularProgress,
+  Grid,
 } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import queryString from "query-string";
@@ -15,6 +16,7 @@ import InputForm from "./Forms/InputForm";
 import ReturnForm from "./Forms/ReturnForm";
 import ReviewProperty from "./ReviewProperty";
 import PropertySuccess from "./PropertySuccess";
+import Loader from "react-loader-spinner";
 
 import validationSchema from "./FormModel/validationSchema";
 import propertyFormModel from "./FormModel/propertyFormModel";
@@ -53,15 +55,16 @@ export default function PropertyPage() {
         `https://us-central1-real-estate-backend-8b77f.cloudfunctions.net/app/properties/${value.id}`
       );
       const initValFromDB = res.data;
-      if (window.location.search) {
-        console.log(true);
-      } else {
-        console.log(false);
-      }
       setEditVals(initValFromDB);
       setLoading(false);
     }
-    getData();
+
+    if (window.location.search) {
+      setActiveStep(steps.length - 1);
+      getData();
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   async function _submitNewForm(values, actions) {
@@ -88,7 +91,7 @@ export default function PropertyPage() {
 
   function _handleSubmit(values, actions) {
     if (isLastStep) {
-      if (value) {
+      if (window.location.search) {
         _submitUpdateForm(values, actions);
       } else {
         _submitNewForm(values, actions);
@@ -165,6 +168,10 @@ export default function PropertyPage() {
       </>
     );
   } else {
-    return <h1>Loading ...</h1>;
+    return (
+      <Grid container direction="row" alignItems="center" justify="center">
+        <Loader type="ThreeDots" color="#16b6ca" height={80} width={80} />
+      </Grid>
+    );
   }
 }

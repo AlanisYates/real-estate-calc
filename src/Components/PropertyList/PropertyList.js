@@ -6,8 +6,11 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
+import AddIcon from "@material-ui/icons/Add";
+import { Typography, Grid, Divider } from "@material-ui/core";
+
 import DeleteIcon from "@material-ui/icons/Delete";
-import Divider from "@material-ui/core/Divider";
+import Loader from "react-loader-spinner";
 import axios from "axios";
 
 export default function PropertyList() {
@@ -64,12 +67,28 @@ export default function PropertyList() {
     });
     return (
       <>
-        <h1>Properties</h1>
-        <Divider variant="middle" />
+        <Typography variant="h3" align="center" gutterBottom>
+          All Properties
+        </Typography>
+        <Divider variant="fullWidth" />
         <List>{propertyList}</List>
+        <Grid container direction="row" alignItems="center" justify="center">
+          <IconButton
+            href="/property_form"
+            onClick={() => {
+              setLoading(true);
+            }}
+          >
+            <AddIcon fontSize="large" />
+          </IconButton>
+        </Grid>
       </>
     );
   } else {
-    return <h1>Loading.....</h1>;
+    return (
+      <Grid container direction="row" alignItems="center" justify="center">
+        <Loader type="ThreeDots" color="#16b6ca" height={80} width={80} />
+      </Grid>
+    );
   }
 }
