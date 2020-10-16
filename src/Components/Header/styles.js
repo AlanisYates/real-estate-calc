@@ -4,4 +4,9 @@ export default makeStyles((theme) => ({
   appBar: {
     position: "relative",
   },
+
+  link: {
+    textDecoration: "none",
+    color: "white",
+  },
 }));

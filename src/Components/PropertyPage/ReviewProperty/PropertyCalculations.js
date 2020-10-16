@@ -1,11 +1,9 @@
 import React from "react";
 import { Typography, Grid, Divider } from "@material-ui/core";
 import { numberWithCommas } from "../../utils/format";
-import useStyles from "./styles";
 
 export default function PropertyCalculations(props) {
   const { formValues } = props;
-  const classes = useStyles();
   const {
     mortgage,
     lawn,

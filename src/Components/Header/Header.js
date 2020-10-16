@@ -10,7 +10,9 @@ export default function Header() {
     <AppBar position="absolute" color="default" className={classes.appBar}>
       <ToolBar>
         <Typorgraphy variant="h6" color="inherit" noWrap>
-          Property Calculator
+          <a className={classes.link} href="/">
+            Property Calculator
+          </a>
         </Typorgraphy>
       </ToolBar>
     </AppBar>

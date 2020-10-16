@@ -14,7 +14,6 @@ export default function PropertyList() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toggle, setToggle] = useState(true);
-  const [activeProperty, setActiveProperty] = useState();
 
   useEffect(() => {
     async function getData() {
@@ -23,7 +22,6 @@ export default function PropertyList() {
       );
       setData(res.data);
       setLoading(false);
-      console.log(activeProperty);
     }
     getData();
   }, [toggle]);
@@ -44,8 +42,8 @@ export default function PropertyList() {
           <ListItemSecondaryAction>
             <ListItemIcon>
               <IconButton
+                href={`/property_form/?id=${item.id}`}
                 onClick={() => {
-                  setActiveProperty(item);
                   setToggle(!toggle);
                 }}
               >

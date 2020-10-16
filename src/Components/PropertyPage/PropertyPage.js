@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Stepper,
   Step,
@@ -8,6 +8,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { Formik, Form } from "formik";
+import queryString from "query-string";
 import axios from "axios";
 
 import InputForm from "./Forms/InputForm";
@@ -17,7 +18,7 @@ import PropertySuccess from "./PropertySuccess";
 
 import validationSchema from "./FormModel/validationSchema";
 import propertyFormModel from "./FormModel/propertyFormModel";
-// import formInitalValues from "./FormModel/formInitalValues";
+import formInitalValues from "./FormModel/formInitalValues";
 
 import useStyles from "./styles";
 
@@ -37,38 +38,34 @@ function _renderStepContent(step) {
   }
 }
 
-export default function PropertyPage(props) {
+export default function PropertyPage() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
+  const [editVals, setEditVals] = useState();
+  const [loading, setLoading] = useState(true);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
-  const initalVals = {
-    repairs: "100",
-    vacancy: "95",
-    mortgage: "62",
-    rehab: "5000",
-    address: "11922 Your address, Tamp, florida, 22345",
-    hoa: "0",
-    rentalIncome: "1900",
-    nickName: "Property 23",
-    tax: "170",
-    lawn: "0",
-    insurance: "67",
-    price: "224000",
-    closing: "1200",
-    link: "https://material-ui.com/components/typography/",
-    capX: "100",
-    downPay: "1000004",
-  };
+  const value = queryString.parse(window.location.search);
 
-  async function getPropertyInfo(id) {
-    const res = await axios.get(
-      `https://us-central1-real-estate-backend-8b77f.cloudfunctions.net/app/properties/${id}`
-    );
-    return res.data;
-  }
+  useEffect(() => {
+    async function getData() {
+      const res = await axios.get(
+        `https://us-central1-real-estate-backend-8b77f.cloudfunctions.net/app/properties/${value.id}`
+      );
+      const initValFromDB = res.data;
+      if (window.location.search) {
+        console.log(true);
+      } else {
+        console.log(false);
+      }
+      setEditVals(initValFromDB);
+      setLoading(false);
+    }
+    getData();
+  }, []);
 
-  async function _submitForm(values, actions) {
+  async function _submitNewForm(values, actions) {
+    actions.setSubmitting(true);
     await axios.post(
       "https://us-central1-real-estate-backend-8b77f.cloudfunctions.net/app/properties",
       values
@@ -78,9 +75,24 @@ export default function PropertyPage(props) {
     setActiveStep(activeStep + 1);
   }
 
+  async function _submitUpdateForm(values, actions) {
+    actions.setSubmitting(true);
+    await axios.put(
+      `https://us-central1-real-estate-backend-8b77f.cloudfunctions.net/app/properties/${value.id}`,
+      values
+    );
+    actions.setSubmitting(false);
+
+    setActiveStep(activeStep + 1);
+  }
+
   function _handleSubmit(values, actions) {
     if (isLastStep) {
-      _submitForm(values, actions);
+      if (value) {
+        _submitUpdateForm(values, actions);
+      } else {
+        _submitNewForm(values, actions);
+      }
     } else {
       setActiveStep(activeStep + 1);
       actions.setTouched({});
@@ -92,61 +104,67 @@ export default function PropertyPage(props) {
     setActiveStep(activeStep - 1);
   }
 
-  return (
-    <>
-      <Typography component="h1" variant="h2" align="center">
-        Property Calculator
-      </Typography>
-      <Stepper activeStep={activeStep} className={classes.stepper}>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+  if (!loading) {
+    return (
       <>
-        {activeStep === steps.length ? (
-          <PropertySuccess />
-        ) : (
-          <Formik
-            enableReinitialize={true}
-            initialValues={initalVals}
-            validationSchema={currentValidationSchema}
-            onSubmit={_handleSubmit}
-          >
-            {({ isSubmitting }) => (
-              <Form id={formId}>
-                {_renderStepContent(activeStep)}
+        <Typography component="h1" variant="h2" align="center">
+          Property Calculator
+        </Typography>
+        <Stepper activeStep={activeStep} className={classes.stepper}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <>
+          {activeStep === steps.length ? (
+            <PropertySuccess />
+          ) : (
+            <Formik
+              enableReinitialize={true}
+              initialValues={
+                window.location.search ? editVals : formInitalValues
+              }
+              validationSchema={currentValidationSchema}
+              onSubmit={_handleSubmit}
+            >
+              {({ isSubmitting }) => (
+                <Form id={formId}>
+                  {_renderStepContent(activeStep)}
 
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={_handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <div className={classes.wrapper}>
-                    <Button
-                      disabled={isSubmitting}
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      className={classes.button}
-                    >
-                      {isLastStep ? "Submit Property" : "Next"}
-                    </Button>
-                    {isSubmitting && (
-                      <CircularProgress
-                        size={24}
-                        className={classes.buttonProgress}
-                      />
+                  <div className={classes.buttons}>
+                    {activeStep !== 0 && (
+                      <Button onClick={_handleBack} className={classes.button}>
+                        Back
+                      </Button>
                     )}
+                    <div className={classes.wrapper}>
+                      <Button
+                        disabled={isSubmitting}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                      >
+                        {isLastStep ? "Submit Property" : "Next"}
+                      </Button>
+                      {isSubmitting && (
+                        <CircularProgress
+                          size={24}
+                          className={classes.buttonProgress}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        )}
+                </Form>
+              )}
+            </Formik>
+          )}
+        </>
       </>
-    </>
-  );
+    );
+  } else {
+    return <h1>Loading ...</h1>;
+  }
 }
